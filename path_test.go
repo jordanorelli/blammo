@@ -56,6 +56,9 @@ func TestSafeNames(t *testing.T) {
 		"one ",
 		"alice/bob",
 		"alice bob",
+		"alice[bob]",
+		"alice{bob}",
+		"alice=bob",
 	}
 	for _, n := range unsafeNames {
 		if IsSafeName(n) {

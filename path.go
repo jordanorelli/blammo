@@ -39,6 +39,9 @@ func (p *Path) String() string {
 // Child creates a child path having parent p. This is the recommended way of
 // constructing a hierarchical path.
 func (p *Path) Child(name string) *Path {
+	if name == "" {
+		name = "-"
+	}
 	return &Path{
 		name:   MakeSafeName(name),
 		parent: p,
