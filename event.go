@@ -8,7 +8,8 @@ import (
 // database row if you're writing to a database, etc. Everything internally is
 // expressed as an event.
 //
-// Event is exported to support the implementation of custom log writers.
+// Event is exported to support the implementation of custom log writers. Most
+// users should not need to handle this type directly.
 type Event struct {
 	// severity of the event
 	Level Level
