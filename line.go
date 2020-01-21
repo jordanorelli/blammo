@@ -45,19 +45,24 @@ func (l *LineWriter) WriteEvent(e *Event) {
 	}
 
 	buf.WriteRune('[')
-	buf.WriteString(e.Path.String())
+	if e.Path != nil {
+		buf.WriteString(e.Path.String())
+	}
 	buf.WriteRune(']')
 	buf.WriteRune(' ')
 
 	if e.Tags == nil {
-		buf.WriteString("[] ")
+		buf.WriteString("[]")
 	} else {
 		buf.WriteRune('[')
 		writeTags(buf, e.Tags)
-		buf.WriteString("] ")
+		buf.WriteRune(']')
 	}
 
-	buf.WriteString(strings.ReplaceAll(e.Text, string('\n'), "\n"))
+	if e.Text != "" {
+		buf.WriteRune(' ')
+		buf.WriteString(strings.ReplaceAll(e.Text, string('\n'), "\n"))
+	}
 
 	l.out.Lock()
 	l.out.Write(buf.Bytes())
