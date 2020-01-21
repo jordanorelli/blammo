@@ -13,27 +13,3 @@ type Tags struct {
 	value  interface{}
 	parent *Tags
 }
-
-// Tag creates a new Tags struct having the given key as its final key, with no
-// associated value. All existing keys continue to exist.
-func (t *Tags) Tag(key string) *Tags {
-	return &Tags{key: key, parent: t}
-}
-
-// TagInt creates a new Tags struct having the given key-value pair as the
-// final key-value pair. All existing key-value pairs continue to exist.
-func (t *Tags) TagInt(key string, v int) *Tags {
-	return &Tags{key: key, value: v, parent: t}
-}
-
-// TagString creates a new Tags struct having the given key-value pair as the
-// final key-value pair. All existing key-value pairs continue to exist.
-func (t *Tags) TagString(key, v string) *Tags {
-	return &Tags{key: key, value: v, parent: t}
-}
-
-// TagFloat creates a new Tags struct having the given key-value pair as the
-// final key-value pair. All existing key-value pairs continue to exist.
-func (t *Tags) TagFloat(key string, v float64) *Tags {
-	return &Tags{key: key, value: v, parent: t}
-}

@@ -11,18 +11,18 @@ import (
 // Event is exported to support the implementation of custom log writers. Most
 // users should not need to handle this type directly.
 type Event struct {
-	// severity of the event
-	Level Level
-
 	// time at which the event occured
 	Time time.Time
+
+	// severity of the event
+	Level Level
 
 	// where the event occurred in the system
 	Path *Path
 
-	// message to be logged
-	Text string
-
 	// key-value pairs to log as extra metadata
 	Tags *Tags
+
+	// message to be logged
+	Text string
 }

@@ -9,6 +9,10 @@ import (
 	"time"
 )
 
+// LineWriter is an EventWriter that writes one event per line. Event that have
+// multiline messages will have the newlines in their messages replaced with \n
+// sequences. This is the default EventWriter and is designed to be reasonably
+// safe and practical for most users.
 type LineWriter struct {
 	pool sync.Pool
 	out  struct {
@@ -70,6 +74,9 @@ func (l *LineWriter) WriteEvent(e *Event) {
 	l.pool.Put(buf)
 }
 
+// writeTags is a helper for LineWriter's WriteEvent method. writeTags writes
+// tags in the order in which they were added to the list of tags; the oldest
+// tag is always written first.
 func writeTags(buf *bytes.Buffer, tags *Tags) {
 	if tags.parent != nil {
 		writeTags(buf, tags.parent)
