@@ -66,6 +66,7 @@ func (l *LineWriter) WriteEvent(e *Event) {
 	if e.Text != "" {
 		buf.WriteRune(' ')
 		buf.WriteString(strings.ReplaceAll(e.Text, string('\n'), "\n"))
+		buf.WriteRune('\n')
 	}
 
 	l.out.Lock()

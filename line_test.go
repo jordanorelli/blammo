@@ -2,6 +2,7 @@ package blammo
 
 import (
 	"bytes"
+	"strings"
 	"testing"
 	"time"
 )
@@ -124,6 +125,7 @@ func TestLineWriter(t *testing.T) {
 			w := NewLineWriter(&buf)
 			w.WriteEvent(&test.event)
 			line := buf.String()
+			line = strings.TrimSuffix(line, "\n")
 			if line != test.line {
 				t.Log("expected line does not match observed line")
 				t.Logf("expected line: '%s'", test.line)
