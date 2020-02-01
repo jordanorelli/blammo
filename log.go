@@ -15,7 +15,8 @@ type Log struct {
 
 func NewLog(name string, options ...Option) *Log {
 	l := &Log{
-		path: NewPath(name),
+		path:  NewPath(name),
+		clock: SystemClock{},
 	}
 	for _, opt := range options {
 		opt.apply(l)
